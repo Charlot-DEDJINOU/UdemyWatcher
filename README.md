@@ -161,13 +161,7 @@ WHATSAPP_RECIPIENTS=+33612345678,+33687654321
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## Support
-
-For any questions or issues:
-- Email: dedjinoucharlotjoel@gmail.com
-- Issues: GitHub Issues
-- Docs: `/docs` endpoint
 
 ## Author
 
-["Charlot DEDJINOU"](https://charlot-dedjinou.vercel.app)
+[Charlot DEDJINOU](https://charlot-dedjinou.vercel.app)
