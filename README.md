@@ -1,6 +1,6 @@
-# 🎓 UdemyWatcher
+# UdemyWatcher
 
-: 
+**UdemyWatcher** is an automated backend service developed in Node.js/TypeScript that continuously monitors the Udemy platform to detect free or highly discounted courses (≥10% off) based on customizable keywords. With a robust architecture integrating Playwright for automated data extraction, MongoDB for historical storage, and a multi-channel notification system (email/WhatsApp), this solution ensures users never miss the best learning opportunities. The system offers a complete REST API with Swagger documentation, scheduled tasks every 5 hours, and intelligent filtering that analyzes course content to perfectly match defined search criteria.
 
 ## Features
 
@@ -12,7 +12,7 @@
 - **Security** and rate limiting
 - **Statistics** and monitoring
 
-## 🚀 Installation
+## Installation
 
 ```bash
 # Clone the repository
@@ -36,7 +36,7 @@ npm run dev
 npm start
 ```
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -54,7 +54,7 @@ Configure the `.env` file with your settings:
 npx playwright install chromium
 ```
 
-## 📚 API Documentation
+## API Documentation
 
 Once the server is running, the interactive documentation is available at:
 `http://localhost:3000/docs`
@@ -75,7 +75,7 @@ Once the server is running, the interactive documentation is available at:
 - `POST /api/scraper/trigger` - Trigger manual scraping
 - `GET /api/scraper/status` - Service status
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 src/
@@ -88,7 +88,7 @@ src/
 └── index.ts         # Entry point
 ```
 
-## 🤖 Scraping Workflow
+## Scraping Workflow
 
 1. **Scheduling**: Cron job every 5 hours
 2. **Retrieval**: Read active keywords from the database
@@ -97,7 +97,7 @@ src/
 5. **Saving**: Store new courses in the database
 6. **Notifications**: Send email/WhatsApp alerts
 
-## 📧 Notifications
+## Notifications
 
 ### Email
 Configured via Nodemailer (Gmail, Outlook, custom SMTP)
@@ -107,7 +107,7 @@ Twilio Programmable Messaging integration
 
 Notifications are sent only for **new** detected courses.
 
-## 🔒 Security
+## Security
 
 - Rate limiting (100 req/15min per IP)
 - Helmet.js for security headers
@@ -115,7 +115,7 @@ Notifications are sent only for **new** detected courses.
 - Proper error handling
 - Configurable CORS
 
-## 🧪 Tests
+## Tests
 
 ```bash
 # Run tests
