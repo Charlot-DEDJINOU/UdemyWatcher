@@ -22,7 +22,7 @@ export class NotificationService {
           pass: process.env.EMAIL_PASS
         }
       });
-      console.log('✅ Service email initialisé');
+      console.log('Service email initialisé');
     }
   }
 

@@ -1,9 +1,7 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import { ICourse } from '../types';
 
-export interface ICourseDocument extends ICourse, Document {}
-
-const courseSchema = new Schema<ICourseDocument>({
+const courseSchema = new Schema<ICourse>({
   title: { type: String, required: true },
   instructor: { type: String, required: true },
   originalPrice: { type: Number, required: true },
@@ -24,4 +22,4 @@ const courseSchema = new Schema<ICourseDocument>({
 courseSchema.index({ keyword: 1, scrapedAt: -1 });
 courseSchema.index({ isFree: 1, discountPercentage: -1 });
 
-export const Course = mongoose.model<ICourseDocument>('Course', courseSchema);
+export const Course = mongoose.model<ICourse>('Course', courseSchema);

@@ -27,13 +27,11 @@ export class UdemyScraper {
       console.log(`🔍 Recherche pour: ${keyword}`);
       await this.page.goto(searchUrl, { waitUntil: 'networkidle' });
       
-      // Attendre le chargement des cours
       await this.page.waitForSelector('[data-purpose="course-card-container"]', { timeout: 10000 });
 
-      // Extraire les données des cours
       const courseElements = await this.page.$$('[data-purpose="course-card-container"]');
       
-      for (const element of courseElements.slice(0, 20)) { // Limiter à 20 cours
+      for (const element of courseElements.slice(0, 20)) {
         try {
           const courseData = await this.extractCourseData(element, keyword);
           if (courseData && this.isValidCourse(courseData)) {
@@ -44,11 +42,11 @@ export class UdemyScraper {
         }
       }
 
-      console.log(`✅ ${courses.length} cours trouvés pour "${keyword}"`);
+      console.log(`${courses.length} cours trouvés pour "${keyword}"`);
       return courses;
 
     } catch (error) {
-      console.error(`❌ Erreur scraping pour "${keyword}":`, error);
+      console.error(`Erreur scraping pour "${keyword}":`, error);
       return [];
     }
   }
@@ -93,11 +91,9 @@ export class UdemyScraper {
         }
       }
 
-      // Image
       const imageElement = await element.$('img');
       const imageUrl = await imageElement?.getAttribute('src') || '';
 
-      // Rating et étudiants
       const ratingElement = await element.$('[data-purpose="rating"]');
       const rating = ratingElement ? parseFloat(await ratingElement.textContent() || '0') : 0;
 
@@ -127,7 +123,6 @@ export class UdemyScraper {
   }
 
   private isValidCourse(course: ICourse): boolean {
-    // Filtrer selon les critères
     const isFreeOrDiscounted = course.isFree || course.discountPercentage >= 10;
     const hasKeywordInTitle = course.title.toLowerCase().includes(course.keyword.toLowerCase());
     

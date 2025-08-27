@@ -14,13 +14,12 @@ export class SchedulerService {
   }
 
   start(): void {
-    // Tâche cron toutes les 5 heures
     cron.schedule('0 */5 * * *', async () => {
-      console.log('🚀 Démarrage du scraping automatique...');
+      console.log('Démarrage du scraping automatique...');
       await this.runScrapingTask();
     });
 
-    console.log('⏰ Planificateur démarré - scraping toutes les 5 heures');
+    console.log('Planificateur démarré - scraping toutes les 5 heures');
   }
 
   async runScrapingTask(): Promise<void> {
@@ -44,36 +43,33 @@ export class SchedulerService {
               const course = new Course(courseData);
               await course.save();
               newCourses.push(courseData);
-              console.log(`✅ Nouveau cours ajouté: ${courseData.title}`);
+              console.log(`Nouveau cours ajouté: ${courseData.title}`);
             }
           } catch (error) {
             console.warn('Erreur sauvegarde cours:', error);
           }
         }
 
-        // Mettre à jour la date de dernier scraping
         keywordDoc.lastScrapedAt = new Date();
         await keywordDoc.save();
       }
 
       await this.scraper.close();
 
-      // Envoyer les notifications
       if (newCourses.length > 0) {
         console.log(`📬 Envoi des notifications pour ${newCourses.length} nouveaux cours`);
         await this.notificationService.sendEmailNotification(newCourses);
         await this.notificationService.sendWhatsAppNotification(newCourses);
       }
 
-      console.log('✅ Tâche de scraping terminée');
+      console.log('Tâche de scraping terminée');
 
     } catch (error) {
-      console.error('❌ Erreur dans la tâche de scraping:', error);
+      console.error('Erreur dans la tâche de scraping:', error);
       await this.scraper.close();
     }
   }
 
-  // Méthode pour déclencher manuellement le scraping
   async triggerManualScraping(): Promise<{ success: boolean; message: string; newCoursesCount: number }> {
     try {
       const startTime = Date.now();
@@ -83,7 +79,7 @@ export class SchedulerService {
       return {
         success: true,
         message: `Scraping manuel terminé en ${Math.round(duration / 1000)}s`,
-        newCoursesCount: 0 // TODO: retourner le vrai nombre
+        newCoursesCount: 0 
       };
     } catch (error) {
       return {

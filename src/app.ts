@@ -6,7 +6,6 @@ import { swaggerSpec } from './config/swagger';
 import { apiLimiter, scrapingLimiter } from './middleware/rateLimiter';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
 
-// Routes
 import keywordsRouter from './routes/keywords';
 import coursesRouter from './routes/courses';
 import scraperRouter from './routes/scraper';
@@ -14,18 +13,15 @@ import scraperRouter from './routes/scraper';
 export const createApp = (): express.Application => {
   const app = express();
 
-  // Middlewares de sécurité
   app.use(helmet());
   app.use(cors({
     origin: process.env.CORS_ORIGIN || '*',
     credentials: true
   }));
 
-  // Middlewares de base
   app.use(express.json({ limit: '10mb' }));
   app.use(express.urlencoded({ extended: true, limit: '10mb' }));
-
-  // Rate limiting
+  
   app.use('/api/', apiLimiter);
   app.use('/api/scraper/trigger', scrapingLimiter);
 

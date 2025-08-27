@@ -1,5 +1,7 @@
-export interface ICourse {
-  _id?: string;
+import { Document, Types } from "mongoose";
+
+export interface ICourse extends Document {
+  _id: Types.ObjectId;
   title: string;
   instructor: string;
   originalPrice: number;
@@ -15,8 +17,8 @@ export interface ICourse {
   isFree: boolean;
 }
 
-export interface IKeyword {
-  _id?: string;
+export interface IKeyword extends Document{
+  _id: Types.ObjectId;
   keyword: string;
   isActive: boolean;
   createdAt: Date;

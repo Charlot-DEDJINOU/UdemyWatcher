@@ -1,9 +1,7 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import { IKeyword } from '../types';
 
-export interface IKeywordDocument extends IKeyword, Document {}
-
-const keywordSchema = new Schema<IKeywordDocument>({
+const keywordSchema = new Schema<IKeyword>({
   keyword: { type: String, required: true, unique: true },
   isActive: { type: Boolean, default: true },
   createdAt: { type: Date, default: Date.now },
@@ -12,4 +10,4 @@ const keywordSchema = new Schema<IKeywordDocument>({
   timestamps: true
 });
 
-export const Keyword = mongoose.model<IKeywordDocument>('Keyword', keywordSchema);
+export const Keyword = mongoose.model<IKeyword>('Keyword', keywordSchema);
