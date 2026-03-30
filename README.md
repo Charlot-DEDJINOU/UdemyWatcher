@@ -164,4 +164,4 @@ WHATSAPP_RECIPIENTS=+33612345678,+33687654321
 
 ## Author
 
-[Charlot DEDJINOU](https://charlot-dedjinou.vercel.app)
+[Charlot DEDJINOU](https://charlotdedjinou.com)
